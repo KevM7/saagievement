@@ -3,12 +3,9 @@ import { Link } from 'react-router-dom';
 import {
   AppLayoutPage,
   Datalist,
-  DatalistRow,
-  DatalistCol,
-  DatalistColActions,
   PageHeader,
-  Icon,
 } from 'saagie-ui/react';
+import Achievement from './../Achievement'
 
 export class Achievements extends React.Component {
   constructor(props) {
@@ -26,6 +23,21 @@ export class Achievements extends React.Component {
           achievements,
         });
       });
+  }
+
+  /**
+   * Click event on an achievement.
+   * Lock or unlock this achievement.
+   */
+  // Arrow fx for binding
+  handleAchievementClick = (id) => {
+    const { achievements } = this.state
+    var achievement = achievements.find((element) => id === element.id)
+    if (achievement) {
+      // switch unlocked/locked
+      achievement.unlocked = !achievement.unlocked
+      this.setState({ achievements: achievements })
+    }
   }
 
   render() {
@@ -47,16 +59,13 @@ export class Achievements extends React.Component {
             </h3>
             <Datalist isHover>
               {achievements.map((achievement) => (
-                <DatalistRow
-                  key={achievement.goal}
-                >
-                  <DatalistCol isLink level="primary">
-                    {achievement.goal}
-                  </DatalistCol>
-                  <DatalistColActions size="xs">
-                    <Icon style={{ opacity: achievement.unlocked ? 1 : 0.4 }} name={achievement.unlocked ? 'fa-trophy' : 'fa-times-circle'} size="xl" />
-                  </DatalistColActions>
-                </DatalistRow>
+                <Achievement 
+                  key={achievement.id}
+                  id={achievement.id} 
+                  goal={achievement.goal}
+                  unlocked={achievement.unlocked}
+                  onClick={this.handleAchievementClick}>
+                </Achievement>              
               ))}
             </Datalist>
           </AppLayoutPage>
