@@ -53,6 +53,7 @@ app.post('/api/achievement/:id/unlock', (req, res) => {
 
   const achievement = achievements.filter((item) => item.id === achievementId);
 
+  // FIXME : condition not correct. NaN is not tested so 404 status is never sent
   if (!achievement) {
     res.sendStatus(404);
     return;

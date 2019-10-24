@@ -15,7 +15,7 @@ export class Achievements extends React.Component {
     };
   }
 
-  componentDidMount() {
+  getAchievementsFromAPI() {
     fetch('/api/achievements')
       .then((body) => body.json())
       .then((achievements) => {
@@ -25,19 +25,28 @@ export class Achievements extends React.Component {
       });
   }
 
+  componentDidMount() {
+    this.getAchievementsFromAPI()
+  }
+
   /**
    * Click event on an achievement.
    * Lock or unlock this achievement.
    */
   // Arrow fx for binding
   handleAchievementClick = (id) => {
-    const { achievements } = this.state
-    var achievement = achievements.find((element) => id === element.id)
-    if (achievement) {
-      // switch unlocked/locked
-      achievement.unlocked = !achievement.unlocked
-      this.setState({ achievements: achievements })
-    }
+    fetch('/api/achievement/' + id + '/unlock', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          this.getAchievementsFromAPI()
+        }
+      })
   }
 
   render() {
