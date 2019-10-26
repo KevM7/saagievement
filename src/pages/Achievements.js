@@ -5,7 +5,7 @@ import {
   Datalist,
   PageHeader,
 } from 'saagie-ui/react';
-import Achievement from './../Achievement'
+import Achievement from './../components/Achievement'
 import { getAchievementsFromAPI, unlockFromAPI } from '../services/AchievementsService';
 
 export class Achievements extends React.Component {
@@ -17,7 +17,7 @@ export class Achievements extends React.Component {
   }
 
   /**
-   * Get all achivements from API 
+   * Get all achivements from API
    */
   getAchievements() {
     getAchievementsFromAPI()
@@ -67,13 +67,13 @@ export class Achievements extends React.Component {
             </h3>
             <Datalist isHover>
               {achievements.map((achievement) => (
-                <Achievement 
+                <Achievement
                   key={achievement.id}
-                  id={achievement.id} 
+                  id={achievement.id}
                   goal={achievement.goal}
                   unlocked={achievement.unlocked}
                   onClick={this.handleAchievementClick}>
-                </Achievement>              
+                </Achievement>
               ))}
             </Datalist>
           </AppLayoutPage>
