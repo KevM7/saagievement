@@ -1,38 +1,22 @@
-import React from 'react'
-
-const { createContext, useContext } = React;
-
-const AchievementContext = createContext(null);
-
-export const  AchievementProvider = (props) => {
-    const value = {
-        unlock: props.unlock || unlock,
-    }
-
-    return (
-        <AchievementProvider.Provider value={value}>
-            {props.children}
-        </AchievementProvider.Provider>
-    )
-}
-
-export const useAchievement = () => {
-    return useContext(AchievementContext)
+/**
+ * Return all achievements
+ */
+export function getAchievementsFromAPI() {
+    return fetch('/api/achievements')
+            .then((body) => body.json())
 }
 
 /**
- * Unlock an achievement
- * @param {id} id number achievement identifier
+ * Unlock an Achievement
+ * @param {*} idAchievement Achievement uniq identifier 
  */
-const unlock = (body) => {
-    return fetch({
+export function unlockFromAPI(idAchievement) {
+    return fetch('/api/achievement/' + idAchievement + '/unlock', {
         method: 'POST',
-        url: '/api/achievement/' + body + '/unlock',
         headers: {
-            'Content-Type': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body),
     })
-    .then((res) => res.json())                
 }
 

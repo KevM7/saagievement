@@ -6,6 +6,7 @@ import {
   PageHeader,
 } from 'saagie-ui/react';
 import Achievement from './../Achievement'
+import { getAchievementsFromAPI, unlockFromAPI } from '../services/AchievementsService';
 
 export class Achievements extends React.Component {
   constructor(props) {
@@ -15,9 +16,11 @@ export class Achievements extends React.Component {
     };
   }
 
-  getAchievementsFromAPI() {
-    fetch('/api/achievements')
-      .then((body) => body.json())
+  /**
+   * Get all achivements from API 
+   */
+  getAchievements() {
+    getAchievementsFromAPI()
       .then((achievements) => {
         this.setState({
           achievements,
@@ -25,26 +28,22 @@ export class Achievements extends React.Component {
       });
   }
 
+  /**
+   * Initialize achievements
+   */
   componentDidMount() {
-    this.getAchievementsFromAPI()
+    this.getAchievements()
   }
 
   /**
-   * Click event on an achievement.
-   * Lock or unlock this achievement.
+   * Unlock this achievement on click
    */
-  // Arrow fx for binding
+  // Arrow function for binding
   handleAchievementClick = (id) => {
-    fetch('/api/achievement/' + id + '/unlock', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
+    unlockFromAPI(id)
       .then((res) => {
         if (res.status === 200) {
-          this.getAchievementsFromAPI()
+          this.getAchievements()
         }
       })
   }

@@ -8,7 +8,7 @@ import {
   } from 'saagie-ui/react';
 
 const Achievement = ({ id, goal, unlocked, onClick }) => (
-    <DatalistRow onClick={ () => onClick(id)}>
+    <DatalistRow onClick={ () => onClick(id) }>
         <DatalistCol isLink level="primary">
             {goal}
         </DatalistCol>
