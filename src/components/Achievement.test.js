@@ -6,7 +6,7 @@ import Achievement from './Achievement'
 describe('<Achievement />', () => {
     it('renders without crashing', () => {
         const onClick = jest.fn()
-        const wrapper = shallow(
+        shallow(
             <Achievement                   
                 id={0} 
                 goal={'goal test'}

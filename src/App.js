@@ -11,7 +11,7 @@ class App extends Component {
           <Route exact path="/" Achievements>
             <Achievements />
           </Route>
-          <Route exact path="/new-achievement">
+          <Route exact path="/new-achievement" NewAchievement>
             <NewAchievement />
           </Route>
         </Switch>

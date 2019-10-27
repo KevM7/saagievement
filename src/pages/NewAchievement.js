@@ -31,7 +31,7 @@ const NewAchievement = () => (
             helper="Describe your new achievement."
             required
             validationErrors={{
-              isDefaultRequiredValue: 'This is required',
+              isDefaultRequiredValue: 'A goal achievement description is required',
             }}
           />
           <button type="submit" className="sui-a-button">
