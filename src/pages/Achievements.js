@@ -5,9 +5,10 @@ import {
   Datalist,
   PageHeader,
 } from 'saagie-ui/react';
-import Achievement from './../Achievement'
+import Achievement from './../components/Achievement'
+import { getAchievementsFromAPI, unlockFromAPI } from '../services/AchievementsService';
 
-export class Achievements extends React.Component {
+export default class Achievements extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,9 +16,11 @@ export class Achievements extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch('/api/achievements')
-      .then((body) => body.json())
+  /**
+   * Get all achivements from API
+   */
+  getAchievements() {
+    getAchievementsFromAPI()
       .then((achievements) => {
         this.setState({
           achievements,
@@ -26,18 +29,24 @@ export class Achievements extends React.Component {
   }
 
   /**
-   * Click event on an achievement.
-   * Lock or unlock this achievement.
+   * Initialize achievements
    */
-  // Arrow fx for binding
+  componentDidMount() {
+    this.getAchievements()
+  }
+
+  /**
+   * Unlock this achievement on click
+   */
+  // Arrow function for binding
   handleAchievementClick = (id) => {
-    const { achievements } = this.state
-    var achievement = achievements.find((element) => id === element.id)
-    if (achievement) {
-      // switch unlocked/locked
-      achievement.unlocked = !achievement.unlocked
-      this.setState({ achievements: achievements })
-    }
+    unlockFromAPI(id)
+      .then((res) => {
+        // Success
+        if (res.status === 200) {
+          this.getAchievements()
+        }
+      })
   }
 
   render() {
@@ -59,13 +68,13 @@ export class Achievements extends React.Component {
             </h3>
             <Datalist isHover>
               {achievements.map((achievement) => (
-                <Achievement 
+                <Achievement
                   key={achievement.id}
-                  id={achievement.id} 
+                  id={achievement.id}
                   goal={achievement.goal}
                   unlocked={achievement.unlocked}
                   onClick={this.handleAchievementClick}>
-                </Achievement>              
+                </Achievement>
               ))}
             </Datalist>
           </AppLayoutPage>

@@ -44,7 +44,7 @@ app.post('/api/achievement', (req, res) => {
   const achievement = { id: achievements.length, goal: req.body.goal, unlocked: false };
 
   achievements.push(achievement);
-  res.sendStatus(200);
+  res.sendStatus(201);
 });
 
 app.post('/api/achievement/:id/unlock', (req, res) => {
