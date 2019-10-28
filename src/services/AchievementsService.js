@@ -20,3 +20,18 @@ export function unlockFromAPI(idAchievement) {
     })
 }
 
+/**
+ * Add a new achievement
+ * @param {*} goal string description of a new achievement
+ */
+export function addNewAchievementFromAPI(goal) {
+    return fetch('/api/achievement', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({goal: goal}),
+    })
+}
+

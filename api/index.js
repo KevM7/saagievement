@@ -44,7 +44,7 @@ app.post('/api/achievement', (req, res) => {
   const achievement = { id: achievements.length, goal: req.body.goal, unlocked: false };
 
   achievements.push(achievement);
-  res.sendStatus(200);
+  res.sendStatus(201);
 });
 
 app.post('/api/achievement/:id/unlock', (req, res) => {
@@ -53,7 +53,6 @@ app.post('/api/achievement/:id/unlock', (req, res) => {
 
   const achievement = achievements.filter((item) => item.id === achievementId);
 
-  // FIXME : condition not correct. NaN is not tested so 404 status is never sent
   if (!achievement) {
     res.sendStatus(404);
     return;

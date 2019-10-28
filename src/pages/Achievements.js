@@ -8,7 +8,7 @@ import {
 import Achievement from './../components/Achievement'
 import { getAchievementsFromAPI, unlockFromAPI } from '../services/AchievementsService';
 
-export class Achievements extends React.Component {
+export default class Achievements extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,6 +42,7 @@ export class Achievements extends React.Component {
   handleAchievementClick = (id) => {
     unlockFromAPI(id)
       .then((res) => {
+        // Success
         if (res.status === 200) {
           this.getAchievements()
         }
