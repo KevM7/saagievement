@@ -22,11 +22,9 @@ describe('<NewAchievement />', () => {
         const input = wrapper.find('input');
         expect(input).toHaveLength(1);
         expect(input.prop('type')).toEqual('text');
-        // expect(input.prop('required')).toHaveLength(1)
     })
 
     it('calls onSubmit where a new achievement is submitted', () => {
-        // window.alert = jest.fn()
         const wrapper = mount(
             <MemoryRouter>
                 <NewAchievement />
@@ -36,8 +34,5 @@ describe('<NewAchievement />', () => {
         const button = wrapper.find('button');
         expect(button).toHaveLength(1);
         expect(button.prop('type')).toEqual('submit');
-
-        // wrapper.find('form').simulate('submit')
-        // expect(window.alert).toHaveBeenCalled()
     })
 })

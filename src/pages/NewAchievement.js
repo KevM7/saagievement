@@ -20,7 +20,7 @@ export default class NewAchievement extends React.Component {
     const goal = data.goalField
     addNewAchievementFromAPI(goal)
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           alert("Your achievement has been added")
         } else {
           alert("An error has occurred")
