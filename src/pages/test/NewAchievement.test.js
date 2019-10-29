@@ -24,7 +24,7 @@ describe('<NewAchievement />', () => {
         expect(input.prop('type')).toEqual('text');
     })
 
-    it('calls onSubmit where a new achievement is submitted', () => {
+    it('submit button exists', () => {
         const wrapper = mount(
             <MemoryRouter>
                 <NewAchievement />
