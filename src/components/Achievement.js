@@ -7,6 +7,13 @@ import {
     Icon,
   } from 'saagie-ui/react';
 
+/**
+ * Achievement component for Datalist component.
+ * @param {number} id unique identifier
+ * @param {string} goal achievement description
+ * @param {boolean} unlocked true if unlocked else false
+ * @param {function} onClick event function fired on click (for example to unlock an achievement)
+ */
 const Achievement = ({ id, goal, unlocked, onClick }) => (
     <DatalistRow onClick={ () => onClick(id) }>
         <DatalistCol isLink level="primary">

@@ -11,6 +11,9 @@ import {
 
 import { addNewAchievementFromAPI } from '../services/AchievementsService';
 
+/**
+ * NewAchievement component is a form to add new Achievment.
+ */
 export default class NewAchievement extends React.Component {
 
   /**

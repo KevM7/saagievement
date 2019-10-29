@@ -8,10 +8,14 @@ import {
 import Achievement from './../components/Achievement'
 import { getAchievementsFromAPI, unlockFromAPI } from '../services/AchievementsService';
 
+/**
+ * Achievements components is a set of Achievement component.
+ */
 export default class Achievements extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // Array of achievements
       achievements: [],
     };
   }
@@ -29,7 +33,7 @@ export default class Achievements extends React.Component {
   }
 
   /**
-   * Initialize achievements
+   * Initialize component with achievements data
    */
   componentDidMount() {
     this.getAchievements()

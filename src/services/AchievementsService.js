@@ -1,3 +1,7 @@
+/* 
+ * Set of methods to wrap API calls for Achievement
+ */
+
 /**
  * Return all achievements
  */
@@ -8,7 +12,7 @@ export function getAchievementsFromAPI() {
 
 /**
  * Unlock an Achievement
- * @param {*} idAchievement Achievement uniq identifier 
+ * @param {number} idAchievement Achievement unique identifier 
  */
 export function unlockFromAPI(idAchievement) {
     return fetch('/api/achievement/' + idAchievement + '/unlock', {
@@ -22,7 +26,7 @@ export function unlockFromAPI(idAchievement) {
 
 /**
  * Add a new achievement
- * @param {*} goal string description of a new achievement
+ * @param {string} goal description of a new achievement
  */
 export function addNewAchievementFromAPI(goal) {
     return fetch('/api/achievement', {
